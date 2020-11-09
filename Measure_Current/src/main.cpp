@@ -50,8 +50,14 @@ void setup()
 
 void loop()
 {
+  float measurements = 0;
+  for(int i = 0; i<100;i++) {
+    measurements += (5.0 / 1023.0) * analogRead(VIN);
+  }
+
+
   float correctionVoltage = -2.493;
-  float voltage_raw = (5.0 / 1023.0) * analogRead(VIN); // Read the voltage from sensor
+  float voltage_raw = measurements / 100; // Read the voltage from sensor
   voltage = voltage_raw + correctionVoltage;                  // 0.007 is a value to make voltage zero when there is no current
   float current = voltage / FACTOR;
   Serial.print("V: ");
