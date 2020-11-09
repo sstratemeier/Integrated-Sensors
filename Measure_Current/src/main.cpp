@@ -44,26 +44,26 @@ float cutOff = FACTOR / cutOffLimit;                     // convert current cut 
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("Hello World");
+  // Serial.println("Hello World");
   // put your setup code here, to run once:
 }
 
 void loop()
 {
   float measurements = 0;
-  for(int i = 0; i<100;i++) {
+  for(int i = 0; i<20;i++) {
     measurements += (5.0 / 1023.0) * analogRead(VIN);
   }
 
 
-  float correctionVoltage = -2.493;
-  float voltage_raw = measurements / 100; // Read the voltage from sensor
+  float correctionVoltage = -2.501;
+  float voltage_raw = measurements / 20; // Read the voltage from sensor
   voltage = voltage_raw + correctionVoltage;                  // 0.007 is a value to make voltage zero when there is no current
   float current = voltage / FACTOR;
-  Serial.print("V: ");
-  Serial.print(voltage, 3); // print voltage with 3 decimal places
-  Serial.print("V, I: ");
-  Serial.print(current, 2); // print the current with 2 decimal places
-  Serial.println("A");
-  delay(500);
+  // Serial.print("V: ");
+  // Serial.print(voltage, 3); // print voltage with 3 decimal places
+  Serial.print(current, 5);
+  Serial.println(" I"); // print the current with 2 decimal places
+  // Serial.println("A");
+  // delay(500);
 }
