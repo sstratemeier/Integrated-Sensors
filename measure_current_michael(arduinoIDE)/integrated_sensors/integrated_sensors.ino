@@ -81,7 +81,7 @@ void drawOnLED(float current) {
     current = current * (-1);
   }
   display.clearDisplay();
-  display.setCursor(10, 15);
+  display.setCursor(0, 15);
   display.setTextSize(3);
   display.setTextColor(SSD1306_WHITE);
   display.print(current);
