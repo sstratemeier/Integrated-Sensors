@@ -46,7 +46,7 @@ float quiescent_Output_voltage[] = {
   0.12, // for ACS758ECB-200U
 };
 const float FACTOR = sensitivity[model] / 1000;          // set sensitivity for selected model
-// const float QOV = quiescent_Output_voltage[model] * VCC; // set quiescent Output voltage for selected model
+const float QOV = quiescent_Output_voltage[model] * VCC; // set quiescent Output voltage for selected model
 float voltage;                                           // internal variable for voltage
 float cutOff = FACTOR / cutOffLimit;                     // convert current cut off to mV
 
@@ -63,9 +63,9 @@ void loop() {
   }
 
 
-  float correctionVoltage = -2.502;
+  //float correctionVoltage = -2.501;
   float voltage_raw = measurements / 20; // Read the voltage from sensor
-  voltage = voltage_raw + correctionVoltage;                  // 0.007 is a value to make voltage zero when there is no current
+  voltage =  voltage_raw - QOV + 0.018 ;// 0.007 is a value to make voltage zero when there is no current
   float current = voltage / FACTOR;
   // Serial.print("V: ");
   // Serial.print(voltage, 3); // print voltage with 3 decimal places
