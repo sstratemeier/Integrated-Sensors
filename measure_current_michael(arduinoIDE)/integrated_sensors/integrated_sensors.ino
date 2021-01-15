@@ -61,18 +61,10 @@ void loop() {
   for (int i = 0; i < 20; i++) {
     measurements += (5.0 / 1023.0) * analogRead(VIN);
   }
-
-
-  //float correctionVoltage = -2.501;
   float voltage_raw = measurements / 20; // Read the voltage from sensor
-  voltage =  voltage_raw - QOV + 0.018 ;// 0.007 is a value to make voltage zero when there is no current
   float current = voltage / FACTOR;
-  // Serial.print("V: ");
-  // Serial.print(voltage, 3); // print voltage with 3 decimal places
   Serial.print(current, 5);
   drawOnLED(current);
-  // Serial.println(" I"); // print the current with 2 decimal places
-  // Serial.println("A");
   delay(2000);
 }
 
